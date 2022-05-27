@@ -1,0 +1,57 @@
+package it.prova.${nomeprogetto}.dao.${classminuscola};
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+
+import it.prova.${nomeprogetto}.model.${classminuscola};
+
+public class ${classmaiuscola}DAOImpl implements ${classmaiuscola}DAO {
+
+	private EntityManager entityManager;
+
+	@Override
+	public List<${classmaiuscola}> list() throws Exception {
+
+		return entityManager.createQuery("from ${classmaiuscola}", ${classmaiuscola}.class).getResultList();
+	}
+
+	@Override
+	public ${classmaiuscola} get(Long id) throws Exception {
+
+		return entityManager.find(${classmaiuscola}.class, id);
+	}
+
+	@Override
+	public void update(${classmaiuscola} input) throws Exception {
+		if (input == null) {
+			throw new Exception("Problema valore in input");
+		}
+		input = entityManager.merge(input);
+	}
+
+	@Override
+	public void insert(${classmaiuscola} input) throws Exception {
+		if (input == null) {
+			throw new Exception("Problema valore in input");
+		}
+		entityManager.persist(input);
+	}
+
+	@Override
+	public void delete(${classmaiuscola} input) throws Exception {
+		if (input == null) {
+			throw new Exception("Problema valore in input");
+		}
+		entityManager.remove(entityManager.merge(input));
+	}
+
+	@Override
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
+	
+
+}

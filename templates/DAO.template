@@ -1,0 +1,11 @@
+package it.prova.${nomeprogetto}.dao.${classmaiuscola};
+
+import java.util.List;
+
+import it.prova.${nomeprogetto}.dao.IBaseDAO;
+import it.prova.${nomeprogetto}.model.${classmaiuscola};
+
+public interface ${classmaiuscola}DAO extends IBaseDAO<${classmaiuscola}> {
+
+
+}

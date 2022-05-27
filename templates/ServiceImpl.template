@@ -1,0 +1,139 @@
+package it.prova.${nomeprogetto}.service;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
+import it.prova.${nomeprogetto}.dao.EntityManagerUtil;
+import it.prova.${nomeprogetto}.dao.${classminuscola}.${classmaiuscola}DAO;
+import it.prova.${nomeprogetto}.model.${classmaiuscola};
+
+public class ${classmaiuscola}ServiceImpl implements ${classmaiuscola}Service {
+
+	private ${classmaiuscola}DAO ${classminuscola}Dao;
+
+	@Override
+	public List<${classmaiuscola}> listAll() throws Exception {
+
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+			${classminuscola}Dao.setEntityManager(entityManager);
+
+			return ${classminuscola}Dao.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
+	}
+
+	@Override
+	public ${classmaiuscola} caricaSingoloElemento(Long id) throws Exception {
+
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+			${classminuscola}Dao.setEntityManager(entityManager);
+
+			return ${classminuscola}Dao.get(id);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
+	}
+
+	@Override
+	public ${classmaiuscola} caricaSingoloElementoEager(Long id) throws Exception {
+
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+			${classminuscola}Dao.setEntityManager(entityManager);
+
+			return ${classminuscola}Dao.findByIdFetchingArticoli(id);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
+	}
+
+	@Override
+	public void aggiorna(${classmaiuscola} ${classminuscola}) throws Exception {
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+			entityManager.getTransaction().begin();
+
+			${classminuscola}Dao.setEntityManager(entityManager);
+
+			${classminuscola}Dao.insert(${classminuscola});
+
+			entityManager.getTransaction().commit();
+		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
+	}
+
+	@Override
+	public void inserisciNuovo(${classmaiuscola} ${classminuscola}) throws Exception {
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+			entityManager.getTransaction().begin();
+
+			${classminuscola}Dao.setEntityManager(entityManager);
+
+			${classminuscola}Dao.insert(${classminuscola});
+
+			entityManager.getTransaction().commit();
+		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
+	}
+
+	@Override
+	public void rimuovi(Long id${classmaiuscola}) throws Exception {
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+			entityManager.getTransaction().begin();
+
+			${classminuscola}Dao.setEntityManager(entityManager);
+
+			${classminuscola}Dao.delete(${classminuscola}Dao.get(id${classmaiuscola}));
+
+			entityManager.getTransaction().commit();
+		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
+
+	}
+
+	@Override
+	public void set${classmaiuscola}DAO(${classmaiuscola}DAO ${classminuscola}DAO) {
+		this.${classminuscola}Dao = ${classminuscola}DAO;
+	}
+
+}
+	
+
